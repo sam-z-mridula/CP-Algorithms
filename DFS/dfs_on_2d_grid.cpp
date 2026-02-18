@@ -5,6 +5,8 @@ using namespace std;
 
 #define nl '\n'
 
+// Time Complexity = O(V) --> V = r * c;
+
 char grid[105][105];            // if a grid of characters is given
 bool vis[105][105];
 vector<pair<int, int> > vp = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
