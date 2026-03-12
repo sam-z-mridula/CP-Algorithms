@@ -52,7 +52,7 @@ int main()
     cin >> r >> c;
     for(int i=0; i<r; i++)
         for(int j=0; j<c; j++)
-            cin >> grid[r][c];
+            cin >> grid[i][j];
 
     int si, sj; cin >> si >> sj;
     int di, dj; cin >> di >> dj;        // input row and col idx of destination

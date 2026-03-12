@@ -36,7 +36,7 @@ int main()
     cin >> r >> c;
     for(int i=0; i<r; i++)
         for(int j=0; j<c; j++)
-            cin >> grid[r][c];
+            cin >> grid[i][j];
 
     int si, sj;                 // si = x of source, sj = y of source
     cin >> si >> sj;
