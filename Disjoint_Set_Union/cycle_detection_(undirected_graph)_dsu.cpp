@@ -3,47 +3,54 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int ldr[1005];
-int grp_sz[1005];
-
 #define nl '\n'
 
-int find(int node)
+const int num = 100005;
+int ldr[num];
+int grp_sz[num];
+
+void dsu_init(int n)
+{
+    for(int i=1; i<=n; i++)
+    {
+        ldr[i] = -1;
+        grp_sz[i] = 1;
+    }
+}
+
+int dsu_find(int node)
 {
     if(ldr[node] == -1) return node;
 
-    int leader = find(ldr[node]);
-    ldr[node] = leader;
-    return leader;
+    ldr[node] = dsu_find(ldr[node]);
+    return ldr[node];
 }
 
-void dsu_union(int node1, int node2)
+void dsu_union(int nodeA, int nodeB)
 {
-    int ldr1 = find(node1);
-    int ldr2 = find(node2);
+    int ldrA = dsu_find(nodeA);
+    int ldrB = dsu_find(nodeB);
 
-    if(grp_sz[ldr1] >= grp_sz[ldr2]){
-        ldr[ldr2] = ldr1;
-        grp_sz[ldr1] += grp_sz[ldr2];
+    if(grp_sz[ldrA] >= grp_sz[ldrB]){
+        ldr[ldrB] = ldrA;
+        grp_sz[ldrA] += grp_sz[ldrB];
     } else {
-        ldr[ldr1] = ldr2;
-        grp_sz[ldr2] += grp_sz[ldr1];
+        ldr[ldrA] = ldrB;
+        grp_sz[ldrB] += grp_sz[ldrA];
     }
 }
 
 int main()
 {
-    memset(ldr, -1, sizeof(ldr));
-    memset(grp_sz, 1, sizeof(grp_sz));
-
     int n, e; cin >> n >> e;
+    dsu_init(n);
     bool cycle = false;
     while (e--)
     {
         int a, b; cin >> a >> b;
 
-        int ldrA = find(a);
-        int ldrB = find(b);
+        int ldrA = dsu_find(a);
+        int ldrB = dsu_find(b);
         if(ldrA == ldrB) cycle = true;
         else dsu_union(a, b);
     }
