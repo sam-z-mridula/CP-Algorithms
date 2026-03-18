@@ -11,7 +11,7 @@ int grp_sz[num];
 
 void dsu_init(int n)
 {
-    for(int i=1; i<=n; i++)
+    for(int i = 0; i < n; i++)
     {
         ldr[i] = -1;
         grp_sz[i] = 1;
