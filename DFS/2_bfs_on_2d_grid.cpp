@@ -1,19 +1,26 @@
-/* IN THE NAME OF ALMIGHTY ALLAH */
+/* IN THE NAME OF ALMIGHTY ALLAH
+____  ___.__ .__                          _________ .__               .___           
+\   \/  /|__||  | ___  __  ____ _______   \_   _   \|  |  _____     __| _/ ____      
+ \     / |  ||  | \  \/ /_/ __ \\_  __ \   |  | ) _/|  |  \__  \   / __ |_/ __ \     
+ /     \ |  ||  |__\   / \  ___/ |  | \/   |  |_)  \|  |__ / __ \_/ /_/ |\  ___/     
+/___/\  \|__||____/ \_/   \___  >|__|      |_____  /|____/(____  /\____ | \___  >    
+      \_/                     \/                 \/            \/      \/     \/     
+*/
 
 #include <bits/stdc++.h>
 using namespace std;
 
 #define nl '\n'
 
-char grid[105][105];
-bool vis[105][105];
+const int n = 1e2 + 5;
+char grid[n][n];
+bool vis[n][n];
 vector<pair<int, int> > vp = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 int r, c;
 
 bool valid(int i, int j)
 {
-    if(i<0 || i>=r || j<0 || j>=c) return false;
-    return true;
+    return (i>=0 || i<r || j>=0 || j<c);
 }
 
 /*-----------------Only change from DFS-----------------*/

@@ -3,8 +3,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<pair<int, int>> adj[105];
-int dis[105];
+const int num = 1e3 + 5;
+vector<pair<int, int>> adj[num];
+int dis[num];
 
 #define nl '\n'
 
