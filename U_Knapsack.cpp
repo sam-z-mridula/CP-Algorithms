@@ -1,0 +1,69 @@
+/* IN THE NAME OF ALMIGHTY ALLAH
+____  ___.__ .__                          _________ .__               .___           
+\   \/  /|__||  | ___  __  ____ _______   \_   _   \|  |  _____     __| _/ ____      
+ \     / |  ||  | \  \/ /_/ __ \\_  __ \   |  | ) _/|  |  \__  \   / __ |_/ __ \     
+ /     \ |  ||  |__\   / \  ___/ |  | \/   |  |_)  \|  |__ / __ \_/ /_/ |\  ___/     
+/___/\  \|__||____/ \_/   \___  >|__|      |_____  /|____/(____  /\____ | \___  >    
+      \_/                     \/                 \/            \/      \/     \/     
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using vi = vector<int>;
+using vll = vector<ll>;
+#define nl '\n'
+#define cy cout << "YES"
+#define cn cout << "NO"
+
+const int y = 1e3 + 5;
+int val[y], w8[y];
+int dp[y][y];
+
+int knapsack(int idx, int mx_w8)
+{
+    if(idx < 0 || mx_w8 <= 0) return 0;
+    if(dp[idx][mx_w8] != -1) return dp[idx][mx_w8];
+
+    if(w8[idx] <= mx_w8)
+    {
+        int op1 = knapsack(idx-1, mx_w8 - w8[idx]) + val[idx];
+        int op2 = knapsack(idx-1, mx_w8);
+
+        dp[idx][mx_w8] = max(op1, op2);
+        return dp[idx][mx_w8];
+    }
+    else
+    {
+        dp[idx][mx_w8] = knapsack(idx-1, mx_w8);
+        return dp[idx][mx_w8];
+    }
+}
+
+void solve()
+{
+    int n, w; cin >> n >> w;
+    for(int i = 0; i < n; i++)
+        cin >> w8[i] >> val[i];
+    
+    for(int i = 0; i <= n; i++)
+        for(int j = 0; j <= w; j++)
+            dp[i][j] = -1;
+
+    cout << knapsack(n-1, w);
+}
+
+int main()
+{
+    ios::sync_with_stdio(false); cin.tie(nullptr); cout.tie(0);
+    
+    int T = 1;
+    // cin >> T;
+    while (T--) { solve(); cout << nl; }
+}
+/*
+-------------------------------------
+ Coded by : Sameeha Zahan Mridula
+-------------------------------------
+*/
